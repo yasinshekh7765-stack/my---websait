@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Please Forgive Me ❤️</title>
+  <style>
+    :root {
+      --pink-50: #fff5f8; --pink-100: #ffe4ef; --pink-200: #fecce0;
+      --pink-400: #f472b6; --pink-500: #ec4899; --pink-600: #db2777;
+      --purple-100: #f3e8ff; --purple-200: #e9d5ff; --purple-500: #a855f7;
+      --purple-700: #7e22ce; --purple-900: #4c1d95; --text-main: #3b1745;
+      --text-soft: #6b3b75; --glass-bg: rgba(255,255,255,.72);
+      --glass-border: rgba(255,255,255,.85);
+      --shadow-glow: 0 18px 45px rgba(219,39,119,.16), 0 6px 18px rgba(147,51,234,.1);
+      --font-bn: 'Noto Sans Bengali','Hind Siliguri','Kalpurush',system-ui,sans-serif;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--font-bn); color:var(--text-main); background:linear-gradient(145deg,#fff5f8 0%,#fce7f3 35%,#f3e8ff 72%,#fff8fb 100%); background-attachment:fixed; min-height:100dvh; overflow-x:hidden; line-height:1.8; position:relative; padding-bottom:env(safe-area-inset-bottom); }
+    .ambient-bg { position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none; }
+    .orb { position:absolute; border-radius:50%; filter:blur(65px); opacity:.55; animation:floatOrb 16s ease-in-out infinite alternate; }
+    .orb-1 { width:320px;height:320px;background:radial-gradient(circle,#fbcfe8,#f472b6);top:-80px;left:-80px; }
+    .orb-2 { width:360px;height:360px;background:radial-gradient(circle,#e9d5ff,#c084fc);bottom:-100px;right:-80px;animation-delay:-6s; }
+    .orb-3 { width:240px;height:240px;background:radial-gradient(circle,#fff,#f9a8d4);top:45%;left:50%;transform:translate(-50%,-50%);animation-delay:-10s; }
+    @keyframes floatOrb { 0%{transform:translate(0,0) scale(1)} 50%{transform:translate(25px,-30px) scale(1.08)} 100%{transform:translate(-20px,25px) scale(.96)} }
+    #heartCanvas { position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1; }
+    .top-bar { position:fixed;top:max(14px,env(safe-area-inset-top));right:16px;z-index:50; }
+    .sound-btn { display:inline-flex;align-items:center;gap:6px;padding:9px 15px;border-radius:999px;border:1px solid var(--glass-border);background:rgba(255,255,255,.78);backdrop-filter:blur(12px);color:var(--purple-900);font-family:var(--font-bn);font-size:.85rem;font-weight:600;cursor:pointer;box-shadow:0 6px 20px rgba(147,51,234,.12); }
+    main { position:relative;z-index:2;width:100%;max-width:780px;margin:0 auto;padding:0 18px; }
+    .hero-section { min-height:100dvh;display:flex;align-items:center;justify-content:center;padding:70px 0 40px; }
+    .hero-card { width:100%;background:var(--glass-bg);backdrop-filter:blur(20px);border:1.5px solid var(--glass-border);border-radius:32px;padding:44px 26px;text-align:center;box-shadow:var(--shadow-glow);position:relative;overflow:hidden;animation:fadeUpIn 1s cubic-bezier(.22,1,.36,1) forwards; }
+    .hero-card:before { content:'';position:absolute;inset:-2px;border-radius:34px;padding:2px;background:linear-gradient(135deg,rgba(244,114,182,.45),rgba(255,255,255,.9),rgba(192,132,252,.45));-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none; }
+    .pulse-heart-wrap { display:inline-flex;align-items:center;justify-content:center;width:84px;height:84px;border-radius:50%;background:linear-gradient(135deg,#ffe4ef,#f3e8ff);box-shadow:0 0 32px rgba(236,72,153,.28);margin-bottom:22px;animation:softBeat 2s ease-in-out infinite; }
+    .pulse-heart-wrap svg { width:42px;height:42px;fill:url(#heartGrad);filter:drop-shadow(0 4px 10px rgba(219,39,119,.35)); }
+    @keyframes softBeat { 0%,100%{transform:scale(1);box-shadow:0 0 24px rgba(236,72,153,.25)} 35%{transform:scale(1.1);box-shadow:0 0 40px rgba(236,72,153,.45)} 55%{transform:scale(1.03)} 75%{transform:scale(1.08)} }
+    .hero-tag { display:inline-block;font-size:.88rem;color:var(--purple-700);background:rgba(243,232,255,.8);padding:6px 16px;border-radius:999px;margin-bottom:16px;font-weight:600; }
+    .hero-title { font-size:clamp(1.85rem,6vw,2.75rem);font-weight:800;line-height:1.4;background:linear-gradient(135deg,#be185d 0%,#9333ea 65%,#db2777 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:14px; }
+    .hero-sub { font-size:clamp(1rem,3.6vw,1.12rem);color:var(--text-soft);max-width:460px;margin:0 auto 30px; }
+    .btn-primary { position:relative;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:14px 32px;border:0;border-radius:999px;background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff;font-family:var(--font-bn);font-size:1.1rem;font-weight:700;cursor:pointer;box-shadow:0 12px 28px rgba(236,72,153,.35);transition:transform .28s ease;overflow:hidden; }
+    .btn-primary:active { transform:scale(.96); }
+    .story-container { display:none;opacity:0;padding-bottom:64px; }
+    .story-container.is-visible { display:block;animation:fadeUpIn .9s cubic-bezier(.22,1,.36,1) forwards; }
+    .section-block { margin:46px 0;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1); }
+    .section-block.in-view { opacity:1;transform:translateY(0); }
+    .glass-card { background:var(--glass-bg);backdrop-filter:blur(18px);border:1.5px solid var(--glass-border);border-radius:28px;padding:32px 24px;box-shadow:var(--shadow-glow); }
+    .section-heading { text-align:center;margin-bottom:24px; }
+    .section-badge { display:inline-block;font-size:.84rem;font-weight:700;color:var(--pink-600);background:rgba(255,228,239,.85);padding:5px 14px;border-radius:999px;margin-bottom:10px; }
+    .section-title { font-size:clamp(1.45rem,4.8vw,2rem);font-weight:800;color:var(--purple-900);line-height:1.4; }
+    .apology-text { font-size:clamp(1.03rem,3.6vw,1.15rem);color:var(--text-main);text-align:center;line-height:1.95; }
+    .apology-text p+p { margin-top:16px; }
+    .apology-highlight { display:inline-block;margin-top:20px;padding:12px 20px;border-radius:18px;background:linear-gradient(135deg,rgba(255,228,239,.85),rgba(243,232,255,.85));color:#9d174d;font-weight:700;border:1px solid rgba(244,114,182,.3); }
+    .reasons-progress { text-align:center;font-size:.92rem;color:var(--purple-700);font-weight:600;margin-bottom:18px; }
+    .reasons-grid { display:grid;grid-template-columns:1fr;gap:14px; }
+    @media(min-width:620px){.reasons-grid{grid-template-columns:1fr 1fr}}
+    .reason-card { background:rgba(255,255,255,.78);border:1.5px solid rgba(255,255,255,.95);border-radius:22px;padding:18px;display:flex;align-items:flex-start;gap:14px;cursor:pointer;box-shadow:0 8px 22px rgba(147,51,234,.07);transition:transform .3s ease,box-shadow .3s ease,background .3s ease,border-color .3s ease;position:relative;overflow:hidden; }
+    .reason-card.touched { background:linear-gradient(135deg,rgba(255,240,246,.95),rgba(245,235,255,.95));border-color:rgba(236,72,153,.45);box-shadow:0 12px 26px rgba(236,72,153,.16); }
+    .reason-num { flex-shrink:0;width:38px;height:38px;border-radius:14px;background:linear-gradient(135deg,#f472b6,#a855f7);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center; }
+    .reason-body h3 { font-size:1.03rem;font-weight:700;color:var(--purple-900);margin-bottom:4px;line-height:1.45; }
+    .reason-body p { font-size:.93rem;color:var(--text-soft);line-height:1.65; }
+    .reason-heart { margin-left:auto;font-size:1.1rem;opacity:.35;transition:transform .35s ease,opacity .35s ease; }
+    .reason-card.touched .reason-heart { opacity:1;transform:scale(1.25); }
+    .letter-stage { display:flex;flex-direction:column;align-items:center; }
+    .envelope-wrapper { width:100%;max-width:440px;margin:10px auto 22px;perspective:1000px;cursor:pointer; }
+    .envelope-box { position:relative;width:100%;min-height:210px;background:linear-gradient(145deg,#fbcfe8,#e9d5ff);border-radius:22px;box-shadow:0 18px 40px rgba(147,51,234,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;border:2px solid rgba(255,255,255,.85); }
+    .wax-seal { width:66px;height:66px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#f43f5e,#be185d);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.7rem;box-shadow:0 8px 22px rgba(190,24,93,.4),inset 0 2px 6px rgba(255,255,255,.4);margin-bottom:14px;animation:softBeat 2.2s infinite; }
+    .envelope-label { font-size:1.08rem;font-weight:700;color:var(--purple-900);margin-bottom:4px; }
+    .envelope-hint { font-size:.9rem;color:var(--text-soft); }
+    .letter-paper { display:none;width:100%;background:linear-gradient(180deg,#fffdf9,#fff5f9);border:1.5px solid #fbcfe8;border-radius:24px;padding:30px 24px;box-shadow:0 20px 45px rgba(219,39,119,.14);text-align:left; }
+    .letter-paper.open { display:block;animation:unfoldLetter .75s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes unfoldLetter { from{opacity:0;transform:translateY(24px) scale(.95)} to{opacity:1;transform:translateY(0) scale(1)} }
+    .letter-header { font-size:1.18rem;font-weight:800;color:#be185d;margin-bottom:14px;border-bottom:1px dashed rgba(236,72,153,.35);padding-bottom:10px; }
+    .letter-content { font-size:1.02rem;color:#4a1d4f;line-height:1.95; }
+    .letter-content p+p { margin-top:14px; }
+    .letter-sign { margin-top:20px;text-align:right;font-weight:700;color:var(--purple-700);font-size:1.05rem; }
+    .btn-soft { margin-top:18px;padding:10px 22px;border-radius:999px;border:1.5px solid rgba(236,72,153,.35);background:rgba(255,255,255,.85);color:#be185d;font-family:var(--font-bn);font-size:.94rem;font-weight:700;cursor:pointer; }
+    .surprise-box { text-align:center; }
+    .surprise-reveal { display:none;margin-top:26px;padding:28px 22px;border-radius:24px;background:linear-gradient(135deg,rgba(255,228,239,.92),rgba(243,232,255,.94));border:1.5px solid rgba(255,255,255,.95);box-shadow:0 16px 38px rgba(219,39,119,.18); }
+    .surprise-reveal.shown { display:block;animation:popIn .7s cubic-bezier(.22,1,.36,1) forwards; }
+    @keyframes popIn { from{opacity:0;transform:scale(.88) translateY(16px)} to{opacity:1;transform:scale(1) translateY(0)} }
+    .surprise-quote { font-size:clamp(1.08rem,3.8vw,1.24rem);font-weight:700;color:#831843;line-height:1.9;margin-bottom:20px; }
+    .mood-check { margin-top:18px;padding-top:18px;border-top:1px dashed rgba(168,85,247,.3); }
+    .mood-question { font-size:.98rem;font-weight:700;color:var(--purple-900);margin-bottom:14px; }
+    .mood-actions { display:flex;flex-wrap:wrap;justify-content:center;gap:12px; }
+    .btn-choice { padding:11px 22px;border-radius:999px;border:0;font-family:var(--font-bn);font-size:.96rem;font-weight:700;cursor:pointer; }
+    .btn-choice.yes { background:linear-gradient(135deg,#ec4899,#9333ea);color:#fff;box-shadow:0 8px 20px rgba(236,72,153,.3); }
+    .btn-choice.still { background:#fff;color:var(--purple-900);border:1.5px solid #e9d5ff; }
+    .mood-reply { margin-top:16px;font-size:1rem;font-weight:700;color:#be185d;min-height:28px; }
+    .ending-card { margin-top:44px;text-align:center;background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(252,231,243,.88));border:1.5px solid #fff;border-radius:28px;padding:32px 22px;box-shadow:var(--shadow-glow); }
+    .ending-hearts { font-size:1.6rem;margin-bottom:10px;display:block; }
+    .ending-message { font-size:clamp(1.06rem,3.8vw,1.22rem);font-weight:700;color:var(--purple-900);line-height:1.85; }
+    @keyframes fadeUpIn { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+    @media(max-width:420px){.hero-card{padding:36px 20px;border-radius:26px}.glass-card{padding:26px 18px;border-radius:24px}.letter-paper{padding:24px 18px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#f43f5e"/><stop offset="55%" stop-color="#ec4899"/><stop offset="100%" stop-color="#a855f7"/></linearGradient></defs></svg>
+  <div class="ambient-bg" aria-hidden="true"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+  <canvas id="heartCanvas" aria-hidden="true"></canvas>
+  <div class="top-bar"><button id="soundToggle" class="sound-btn" type="button" aria-label="সুর চালু বা বন্ধ করুন"><span id="soundIcon">🎵</span><span id="soundLabel">মিষ্টি সুর</span></button></div>
+
+  <main>
+    <section class="hero-section" id="heroSection">
+      <div class="hero-card">
+        <div class="pulse-heart-wrap" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+        <div class="hero-tag">তোমার জন্য আমার মনের ছোট্ট অনুরোধ ✨</div>
+        <h1 class="hero-title">একটু শুনবে আমার কথা? 🥺❤️</h1>
+        <p class="hero-sub">জানি তুমি অনেক অভিমান করে আছো, আর সেটার পুরো অধিকারও তোমার আছে। তবুও শুধু কয়েকটা মুহূর্ত আমাকে দেবে?</p>
+        <button id="startBtn" class="btn-primary" type="button">একবার ক্লিক করো ❤️</button>
+      </div>
+    </section>
+
+    <div id="storyContainer" class="story-container">
+      <section class="section-block" id="apologySection"><div class="glass-card"><div class="section-heading"><span class="section-badge">হৃদয় থেকে ক্ষমা চাওয়া 🤍</span><h2 class="section-title">আমি সত্যিই ভীষণ দুঃখিত, সোনা</h2></div><div class="apology-text"><p>আমার ভুলের জন্য তোমাকে কষ্ট পেতে হয়েছে, এটা ভাবতেই আমার ভেতরটা খুব ভারী হয়ে আছে। তোমাকে মন খারাপ করানোর কোনো ইচ্ছেই আমার কখনো ছিল না, আর কখনো থাকবেও না।</p><p>তুমি চুপ করে থাকলে আমার পুরো পৃথিবীটাই যেন থমকে যায়। তোমার মুখের ওই ছোট্ট হাসিটা ছাড়া আমার কোনো দিনই ভালো কাটে না। আমি কথা দিচ্ছি, নিজের ভুলগুলো শুধরে নেব এবং আর কখনো তোমাকে এভাবে কষ্ট দেব না।</p><div class="apology-highlight">দয়া করে আমার ওপর থেকে অভিমানটা একটু কমিয়ে দাও না? আমাকে ক্ষমা করে দাও প্লিজ 🥺❤️</div></div></div></section>
+
+      <section class="section-block" id="reasonsSection"><div class="glass-card"><div class="section-heading"><span class="section-badge">তুমি আমার পুরো পৃথিবী ✨</span><h2 class="section-title">কেন তুমি আমার কাছে এত স্পেশাল — ১০টি কারণ</h2></div><p class="reasons-progress" id="reasonsProgress">কার্ডগুলোতে ছুঁয়ে দেখো (০ / ১০ টি পড়া হয়েছে) 💕</p><div class="reasons-grid" id="reasonsGrid"></div></div></section>
+
+      <section class="section-block" id="letterSection"><div class="glass-card"><div class="section-heading"><span class="section-badge">মনের গোপন কথা 💌</span><h2 class="section-title">তোমার জন্য একটি ছোট্ট চিঠি</h2></div><div class="letter-stage"><div class="envelope-wrapper" id="envelopeWrapper"><div class="envelope-box" id="envelopeBox" role="button" tabindex="0" aria-label="চিঠিটি খুলতে এখানে ক্লিক করো"><div class="wax-seal">❤️</div><div class="envelope-label">খামটি খুলতে এখানে ট্যাপ করো ✨</div><div class="envelope-hint">ভেতরে তোমার জন্য কিছু না বলা কথা আছে...</div></div></div><article class="letter-paper" id="letterPaper" aria-live="polite"><div class="letter-header">প্রিয় আমার ভালোবাসা, 🌸</div><div class="letter-content"><p>অনেক সময় মুখে সব কথা গুছিয়ে বলতে পারি না, তাই আজ এই ছোট্ট চিঠিতে মনের কথাগুলো লিখে দিলাম। আমাদের মাঝে যতই ঝগড়া বা অভিমান হোক না কেন, দিনশেষে আমার সব ভালো লাগা, সব শান্তি আর সব স্বপ্ন তোমাকেই ঘিরে।</p><p>তুমি শুধু আমার ভালোবাসা নও, তুমি আমার সবচেয়ে সুন্দর অভ্যাস, আমার সেরা বন্ধু আর আমার প্রতিদিনের হাসির কারণ। তুমি রাগ করলে আমার নিজের ওপরই ভীষণ রাগ হয়, কারণ পৃথিবীর কোনো মানুষই আমার কাছে তোমার চোখের কোণের সামান্য মন খারাপের চেয়ে বড় নয়।</p><p>আমি হাত ধরে থাকতে চাই—সুখের দিনে, মন খারাপের দিনে, এমনকি এমন অভিমানের দিনেও। সারা জীবন তোমাকে এভাবেই আগলে রাখতে চাই।</p></div><div class="letter-sign">ইতি,<br/>শুধুই তোমার ❤️</div><div style="text-align:center"><button id="closeLetterBtn" class="btn-soft" type="button">চিঠিটি ভাঁজ করে রাখো 💌</button></div></article></div></div></section>
+
+      <section class="section-block" id="surpriseSection"><div class="glass-card surprise-box"><div class="section-heading"><span class="section-badge">ছোট্ট একটি উপহার 🎁</span><h2 class="section-title">তোমার জন্য একটি বিশেষ সারপ্রাইজ</h2></div><p style="color:var(--text-soft);margin-bottom:22px">নিচের বাটনটিতে একবার ক্লিক করে দেখো তো, তোমার জন্য কী অপেক্ষা করছে... ✨</p><button id="surpriseBtn" class="btn-primary" type="button">বিশেষ সারপ্রাইজটি দেখো ❤️✨</button><div id="surpriseReveal" class="surprise-reveal" aria-live="polite"><div style="font-size:2.1rem;margin-bottom:10px">💖🌸✨</div><p class="surprise-quote">“পৃথিবীর সব তারার চেয়েও উজ্জ্বল তোমার মুখের একটি হাসি। তুমি আমার জীবনের সবচেয়ে সুন্দর উপহার—যাকে আমি আজও ভালোবাসি, কালও ভালোবাসব, আর প্রতিটি জন্মেই শুধু তোমাকেই খুঁজে নেব। ভালোবাসি তোমাকে, সীমাহীন ভালোবাসি! ❤️”</p><div class="mood-check"><p class="mood-question">সত্যি করে বলো তো, রাগটা কি একটু কমেছে? 🥺</p><div class="mood-actions"><button class="btn-choice yes" id="forgiveYes" type="button">হ্যাঁ, একটু কমেছে 😊❤️</button><button class="btn-choice still" id="forgiveStill" type="button">আরেকটু আদর চাই 🥺</button></div><div class="mood-reply" id="moodReply"></div></div></div></div></section>
+
+      <footer class="section-block ending-card" id="endingSection"><span class="ending-hearts" aria-hidden="true">🌷🤍🌷</span><p class="ending-message">তুমি রাগ করে থাকলেও নিজের যত্ন নিতে ভুলে যেয়ো না। তুমি আমার কাছে অনেক স্পেশাল। ❤️</p></footer>
+    </div>
+  </main>
+
+  <script>
+  (() => {
+    'use strict';
+    let audioCtx=null,isSoundEnabled=false,melodyTimer=null,noteIndex=0;
+    const soundToggle=document.getElementById('soundToggle'),soundIcon=document.getElementById('soundIcon'),soundLabel=document.getElementById('soundLabel');
+    const notes=[523.25,659.25,783.99,987.77,783.99,659.25,587.33,659.25];
+    function initAudio(){if(!audioCtx){const AC=window.AudioContext||window.webkitAudioContext;if(AC)audioCtx=new AC();}if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();}
+    function playSoftNote(freq,duration=1.2,volume=.045){if(!isSoundEnabled||!audioCtx)return;const now=audioCtx.currentTime,osc=audioCtx.createOscillator(),gain=audioCtx.createGain();osc.type='sine';osc.frequency.setValueAtTime(freq,now);gain.gain.setValueAtTime(.001,now);gain.gain.exponentialRampToValueAtTime(volume,now+.06);gain.gain.exponentialRampToValueAtTime(.0001,now+duration);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now);osc.stop(now+duration);}
+    function stopGentleLoop(){if(melodyTimer){clearInterval(melodyTimer);melodyTimer=null;}}
+    function toggleSound(forceOn=false){initAudio();isSoundEnabled=forceOn?true:!isSoundEnabled;if(isSoundEnabled){soundIcon.textContent='🎶';soundLabel.textContent='সুর চলছে';playSoftNote(659.25,1,.05);stopGentleLoop();melodyTimer=setInterval(()=>{if(isSoundEnabled){playSoftNote(notes[noteIndex%notes.length],1.4,.035);noteIndex++;}},950);}else{soundIcon.textContent='🔇';soundLabel.textContent='সুর বন্ধ';stopGentleLoop();}}
+    soundToggle.addEventListener('click',()=>toggleSound());
+
+    const canvas=document.getElementById('heartCanvas'),ctx=canvas.getContext('2d');let width=0,height=0;
+    const ambientHearts=[],burstParticles=[],heartColors=['#f472b6','#ec4899','#c084fc','#f43f5e','#e879f9'];
+    function resizeCanvas(){const dpr=Math.min(window.devicePixelRatio||1,2);width=window.innerWidth;height=window.innerHeight;canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}
+    resizeCanvas();window.addEventListener('resize',resizeCanvas);
+    function createAmbientHeart(bottom=false){return{x:Math.random()*width,y:bottom?height+20:Math.random()*height,size:7+Math.random()*12,speedY:.35+Math.random()*.65,swayAmp:.4+Math.random()*.9,swayPhase:Math.random()*Math.PI*2,opacity:.14+Math.random()*.25,color:heartColors[Math.floor(Math.random()*heartColors.length)]};}
+    for(let i=0;i<(window.innerWidth<600?18:28);i++)ambientHearts.push(createAmbientHeart());
+    function drawHeart(x,y,size,color,alpha,rotation=0){ctx.save();ctx.translate(x,y);ctx.rotate(rotation);ctx.globalAlpha=alpha;ctx.fillStyle=color;ctx.beginPath();const t=size*.3;ctx.moveTo(0,t);ctx.bezierCurveTo(0,0,-size/2,0,-size/2,t);ctx.bezierCurveTo(-size/2,(size+t)/2,0,(size+t)/1.15,0,size);ctx.bezierCurveTo(0,(size+t)/1.15,size/2,(size+t)/2,size/2,t);ctx.bezierCurveTo(size/2,0,0,0,0,t);ctx.closePath();ctx.fill();ctx.restore();}
+    function spawnHeartBurst(x,y,count=26){for(let i=0;i<count;i++){const a=Math.random()*Math.PI*2,v=1.8+Math.random()*4.5;burstParticles.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v-1.5,size:8+Math.random()*12,alpha:1,decay:.012+Math.random()*.012,rotation:(Math.random()-.5)*.6,color:heartColors[Math.floor(Math.random()*heartColors.length)]});}}
+    function animateCanvas(){ctx.clearRect(0,0,width,height);for(let i=0;i<ambientHearts.length;i++){const h=ambientHearts[i];h.y-=h.speedY;h.swayPhase+=.015;h.x+=Math.sin(h.swayPhase)*h.swayAmp;if(h.y< -30)ambientHearts[i]=createAmbientHeart(true);drawHeart(h.x,h.y,h.size,h.color,h.opacity);}for(let i=burstParticles.length-1;i>=0;i--){const p=burstParticles[i];p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.alpha-=p.decay;if(p.alpha<=0){burstParticles.splice(i,1);continue;}drawHeart(p.x,p.y,p.size,p.color,p.alpha,p.rotation);}requestAnimationFrame(animateCanvas);}
+    animateCanvas();
+
+    const reasonsData=[
+      {title:'তোমার মিষ্টি হাসি',desc:'তোমার মুখের ওই ছোট্ট হাসিটা দেখলে আমার সারাদিনের সব ক্লান্তি মুহূর্তেই মিলিয়ে যায়।'},
+      {title:'তোমার যত্ন নেওয়া',desc:'নিজে হাজার ব্যস্ত থাকলেও আমার খেয়াল রাখতে তুমি কখনো ভুল করো না।'},
+      {title:'তোমার মায়াময় চোখ',desc:'তোমার চোখের দিকে তাকালে আমি আমার পুরো পৃথিবীর শান্তি খুঁজে পাই।'},
+      {title:'তোমার মিষ্টি অভিমান',desc:'তুমি যখন ছোট ছোট ব্যাপারে রাগ করো, তখনও তোমাকে ভীষণ আদুরে লাগে।'},
+      {title:'আমার সবচেয়ে ভালো বন্ধু',desc:'মনের সব কথা নিঃসংকোচে শুধু তোমার কাছেই বলতে পারি কোনো ভয় ছাড়াই।'},
+      {title:'তোমার কণ্ঠস্বর',desc:'তোমার সাথে একটু কথা না বললে দিনটা যেন অসম্পূর্ণ আর ফাঁকা লাগে।'},
+      {title:'তোমার কোমল মন',desc:'তুমি সবার প্রতি এতটা ভালো আর দয়ালু, যা আমাকে প্রতিদিন নতুন করে মুগ্ধ করে।'},
+      {title:'কঠিন সময়ে পাশে থাকা',desc:'যখন আমি ভেঙে পড়ি, তখন একমাত্র তুমিই আমাকে সাহস দিয়ে আগলে রাখো।'},
+      {title:'তোমার শিশুসুলভ সরলতা',desc:'ছোট ছোট খুশিতে তোমার চোখ চকচক করে ওঠাটা আমার জীবনের সবচেয়ে প্রিয় দৃশ্য।'},
+      {title:'কারণ তুমি—তুমিই!',desc:'কোনো শর্ত ছাড়াই আমার প্রতিটি নিঃশ্বাস আর হৃদস্পন্দনে শুধু তোমারই নাম লেখা।'}
+    ];
+    const bengaliDigits=['১','২','৩','৪','৫','৬','৭','৮','৯','১০'],reasonsGrid=document.getElementById('reasonsGrid'),reasonsProgress=document.getElementById('reasonsProgress'),touchedSet=new Set();
+    function toBn(n){return String(n).replace(/\d/g,d=>'০১২৩৪৫৬৭৮৯'[d]);}
+    reasonsData.forEach((item,idx)=>{const card=document.createElement('div');card.className='reason-card';card.setAttribute('role','button');card.tabIndex=0;card.innerHTML=`<div class="reason-num">${bengaliDigits[idx]}</div><div class="reason-body"><h3>${item.title}</h3><p>${item.desc}</p></div><div class="reason-heart" aria-hidden="true">❤️</div>`;function tap(e){card.classList.add('touched');touchedSet.add(idx);reasonsProgress.textContent=touchedSet.size===10?'তুমি সবগুলো কারণ পড়ে নিয়েছ! ভালোবাসি তোমায় ❤️✨':`কার্ডগুলোতে ছুঁয়ে দেখো (${toBn(touchedSet.size)} / ১০ টি পড়া হয়েছে) 💕`;const r=card.getBoundingClientRect();spawnHeartBurst(e.clientX||r.left+r.width/2,e.clientY||r.top+r.height/2,10);playSoftNote(notes[idx%notes.length],.9,.05);}card.addEventListener('click',tap);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tap(e);}});reasonsGrid.appendChild(card);});
+
+    const startBtn=document.getElementById('startBtn'),storyContainer=document.getElementById('storyContainer'),apologySection=document.getElementById('apologySection');
+    let sectionsObserved=false;
+    function observeSections(){if(sectionsObserved)return;sectionsObserved=true;const blocks=document.querySelectorAll('.section-block');if('IntersectionObserver'in window){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}}),{threshold:.12});blocks.forEach(b=>observer.observe(b));}else blocks.forEach(b=>b.classList.add('in-view'));}
+    startBtn.addEventListener('click',()=>{const r=startBtn.getBoundingClientRect();spawnHeartBurst(r.left+r.width/2,r.top+r.height/2,30);if(!isSoundEnabled)toggleSound(true);else playSoftNote(783.99,1.2,.06);storyContainer.classList.add('is-visible');observeSections();setTimeout(()=>apologySection.scrollIntoView({behavior:'smooth',block:'start'}),180);});
+
+    const envelopeBox=document.getElementById('envelopeBox'),envelopeWrapper=document.getElementById('envelopeWrapper'),letterPaper=document.getElementById('letterPaper'),closeLetterBtn=document.getElementById('closeLetterBtn');
+    function openLetter(){if(letterPaper.classList.contains('open'))return;const r=envelopeBox.getBoundingClientRect();spawnHeartBurst(r.left+r.width/2,r.top+r.height/2,24);playSoftNote(987.77,1.3,.055);envelopeWrapper.style.display='none';letterPaper.classList.add('open');}
+    envelopeBox.addEventListener('click',openLetter);envelopeBox.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openLetter();}});
+    closeLetterBtn.addEventListener('click',()=>{letterPaper.classList.remove('open');envelopeWrapper.style.display='block';playSoftNote(523.25,.9,.045);});
+
+    const surpriseBtn=document.getElementById('surpriseBtn'),surpriseReveal=document.getElementById('surpriseReveal'),forgiveYes=document.getElementById('forgiveYes'),forgiveStill=document.getElementById('forgiveStill'),moodReply=document.getElementById('moodReply');
+    surpriseBtn.addEventListener('click',()=>{const r=surpriseBtn.getBoundingClientRect();spawnHeartBurst(r.left+r.width/2,r.top+r.height/2,40);setTimeout(()=>{spawnHeartBurst(innerWidth*.25,innerHeight*.45,18);spawnHeartBurst(innerWidth*.75,innerHeight*.45,18);},220);playSoftNote(783.99,1.4,.06);setTimeout(()=>playSoftNote(987.77,1.4,.055),180);surpriseReveal.classList.add('shown');surpriseBtn.textContent='তোমার জন্য ভালোবাসা ❤️';});
+    forgiveYes.addEventListener('click',()=>{const r=forgiveYes.getBoundingClientRect();spawnHeartBurst(r.left+r.width/2,r.top+r.height/2,32);playSoftNote(987.77,1.4,.06);moodReply.textContent='ইয়ে! এটাই শুনতে চেয়েছিলাম! অনেক ভালোবাসি তোমাকে! 🥰❤️';});
+    forgiveStill.addEventListener('click',()=>{const r=forgiveStill.getBoundingClientRect();spawnHeartBurst(r.left+r.width/2,r.top+r.height/2,20);playSoftNote(659.25,1.2,.05);moodReply.textContent='ঠিক আছে, তোমার সময় লাগলে নাও। আমি তোমার অনুভূতিকে সম্মান করি। 🥺💕';});
+  })();
+  </script>
+</body>
+</html>
